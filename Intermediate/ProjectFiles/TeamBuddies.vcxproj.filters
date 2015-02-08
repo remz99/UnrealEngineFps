@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\TeamBuddies.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{ED2057BD-93DA-4B70-8C6C-EE1562F4556A}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\TeamBuddies.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\TeamBuddiesEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{A798A5C6-5FB5-4B40-B5AA-A6D0C1A20493}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\TeamBuddies">
+			<UniqueIdentifier>{E75D54E9-5011-4D26-8FD9-AF767DA1E152}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\TeamBuddies\TeamBuddies.Build.cs">
+			<Filter>Source\TeamBuddies</Filter>
+		</None >
+		<Filter Include="Source\TeamBuddies\Private">
+			<UniqueIdentifier>{F2D482CB-CBA3-4F7A-AD62-5FA7379975F2}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\BoxSpawner.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\BuildingBox.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\Health.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\Item.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\TeamBuddies.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\TeamBuddiesCharacter.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\TeamBuddiesGameMode.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\TeamBuddiesHUD.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TeamBuddies\Private\TeamBuddiesProjectile.cpp">
+			<Filter>Source\TeamBuddies\Private</Filter>
+		</ClCompile >
+		<Filter Include="Source\TeamBuddies\Public">
+			<UniqueIdentifier>{6B921BD0-8CCE-46D7-A8CD-8BE9F05E93D6}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\BoxSpawner.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\BuildingBox.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\Health.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\Item.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\TeamBuddies.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\TeamBuddiesCharacter.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\TeamBuddiesGameMode.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\TeamBuddiesHUD.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TeamBuddies\Public\TeamBuddiesProjectile.h">
+			<Filter>Source\TeamBuddies\Public</Filter>
+		</ClInclude >
+		<Filter Include="Source\TeamBuddies\Resources">
+			<UniqueIdentifier>{E9A903BD-ACD7-4C87-8560-B6702D4B2A18}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Source\TeamBuddies\Resources\Windows">
+			<UniqueIdentifier>{0EA415FA-721F-47B3-81D1-90C8112086A0}</UniqueIdentifier>
+		</Filter>
+		<ResourceCompile Include="..\..\Source\TeamBuddies\Resources\Windows\TeamBuddies.rc">
+			<Filter>Source\TeamBuddies\Resources\Windows</Filter>
+		</ResourceCompile >
+	</ItemGroup>
+</Project>
