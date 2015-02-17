@@ -41,6 +41,8 @@ ATeamBuddiesCharacter::ATeamBuddiesCharacter(const FObjectInitializer& ObjectIni
 
 	// Set the health on the player
 	Health = 100;
+
+	CurrentState = ETeamBuddiesPlayerState::EPlaying;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -56,6 +58,10 @@ void ATeamBuddiesCharacter::SetupPlayerInputComponent(class UInputComponent* Inp
 	
 	InputComponent->BindAction("Fire", IE_Pressed, this, &ATeamBuddiesCharacter::OnFire);
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATeamBuddiesCharacter::TouchStarted);
+
+	// custom event bindings
+	// interact with objects
+	InputComponent->BindAction("Interact", IE_Pressed, this, &ATeamBuddiesCharacter::OnInteract);
 
 	InputComponent->BindAxis("MoveForward", this, &ATeamBuddiesCharacter::MoveForward);
 	InputComponent->BindAxis("MoveRight", this, &ATeamBuddiesCharacter::MoveRight);
@@ -147,4 +153,51 @@ void ATeamBuddiesCharacter::LookUpAtRate(float Rate)
 void ATeamBuddiesCharacter::AddHealth(uint64 Amount)
 {
 	Health += Amount;
+}
+
+/** Interact with objects in the world */
+void ATeamBuddiesCharacter::OnInteract()
+{
+	switch (CurrentState)
+	{
+	case ETeamBuddiesPlayerState::EHasPickUp:
+		DropBox();
+		break;
+	case ETeamBuddiesPlayerState::EInVehicle:
+		break;
+	case ETeamBuddiesPlayerState::EPlaying:
+	default:
+		FindInteractable();
+		break;
+	}
+}
+
+void ATeamBuddiesCharacter::FindInteractable_Implementation()
+{
+	// from the camera cast line trace by channel "Interactable"
+	//	=> on hit
+	//		cast to building box
+	//			PickUpBox
+	//		cast to vechile
+	//			enter vehicle
+}
+
+void ATeamBuddiesCharacter::PickUpBox_Implementation(ABuildingBox* MyBox)
+{
+	//UE_LOG(LogTemp, Warning, TEXT("ATeamBuddiesCharacter::PickUp_Implementation"));
+	// set is Interacting to true
+	// set pickupbox to box
+
+	// on the box set simulate physics to false
+	// attach actor to the building box placement component 
+}
+
+void ATeamBuddiesCharacter::DropBox_Implementation()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("ATeamBuddiesCharacter::DropBox_Implementation"));
+	// on pickedup box
+	// set simulate physics to true
+	// attach actor to component with no parent
+	// set is interacting to false
+	// set picked up box to null
 }

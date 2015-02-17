@@ -1,7 +1,17 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "GameFramework/Character.h"
+#include "BuildingBox.h"
 #include "TeamBuddiesCharacter.generated.h"
+
+UENUM(BlueprintType)
+enum class ETeamBuddiesPlayerState : uint8
+{
+	EPlaying,
+	EHasPickUp,
+	EInVehicle
+};
+
 
 UCLASS(config=Game)
 class ATeamBuddiesCharacter : public ACharacter
@@ -46,10 +56,32 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Player)
 	float Health;
 
-	UFUNCTION()
+	// wip
 	void AddHealth(uint64 amount);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Player)
+	class ABuildingBox* PickedUpBox;
+
+	// todo: make private
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Player)
+	ETeamBuddiesPlayerState CurrentState;
 		
 protected:
+
+	/** Handler for interacting with objects, on 'E' press */
+	UFUNCTION(BlueprintCallable, Category = Player)
+	void OnInteract();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Player)
+	void FindInteractable();
+
+	/** Pick up a pickupable object */
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Player)
+	void PickUpBox(ABuildingBox* MyBox);
+
+	/** Pick up a pickupable object */
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Player)
+	void DropBox();
 
 	/** Handler for a touch input beginning. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -86,4 +118,3 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 };
-
