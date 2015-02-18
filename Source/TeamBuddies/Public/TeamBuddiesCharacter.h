@@ -72,6 +72,8 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = Player)
 	void OnInteract();
 
+	bool DoInteractableTrace(FHitResult* RV_Hit, FCollisionQueryParams* RV_TraceParams);
+
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Player)
 	void FindInteractable();
 

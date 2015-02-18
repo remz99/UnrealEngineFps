@@ -174,30 +174,64 @@ void ATeamBuddiesCharacter::OnInteract()
 
 void ATeamBuddiesCharacter::FindInteractable_Implementation()
 {
-	// from the camera cast line trace by channel "Interactable"
-	//	=> on hit
-	//		cast to building box
-	//			PickUpBox
-	//		cast to vechile
-	//			enter vehicle
+	FHitResult RV_Hit(ForceInit);
+	FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true, this);
+	
+	if (DoInteractableTrace(&RV_Hit, &RV_TraceParams))
+	{
+		ABuildingBox* Box = Cast<ABuildingBox>(RV_Hit.GetActor());
+
+		if (Box)
+		{
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, *RV_Hit.GetActor()->GetName());
+			PickUpBox(Box);
+		}
+	}
+}
+
+bool ATeamBuddiesCharacter::DoInteractableTrace(FHitResult* RV_Hit, FCollisionQueryParams* RV_TraceParams)
+{
+	FVector CameraLoc;
+	FRotator CameraRot;
+	GetActorEyesViewPoint(CameraLoc, CameraRot);
+
+	FVector Start = CameraLoc;
+	FVector End = CameraLoc + (CameraRot.Vector() * 90.f);
+
+	RV_TraceParams->bTraceComplex = true;
+	RV_TraceParams->bTraceAsyncScene = true;
+	RV_TraceParams->bReturnPhysicalMaterial = true;
+
+	// line trace on the "Interactable" line channel from the center of the camera
+	bool DidTrace = GetWorld()->LineTraceSingle(*RV_Hit, Start, End, ECC_EngineTraceChannel1, *RV_TraceParams);
+
+	return DidTrace;
 }
 
 void ATeamBuddiesCharacter::PickUpBox_Implementation(ABuildingBox* MyBox)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("ATeamBuddiesCharacter::PickUp_Implementation"));
-	// set is Interacting to true
-	// set pickupbox to box
+	CurrentState = ETeamBuddiesPlayerState::EHasPickUp;
+	PickedUpBox = MyBox;
+	//MyBox->SetActorEnableCollision(false);
 
-	// on the box set simulate physics to false
+	// todo
 	// attach actor to the building box placement component 
 }
 
 void ATeamBuddiesCharacter::DropBox_Implementation()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("ATeamBuddiesCharacter::DropBox_Implementation"));
-	// on pickedup box
-	// set simulate physics to true
-	// attach actor to component with no parent
-	// set is interacting to false
-	// set picked up box to null
+	ABuildingBox* Box = Cast<ABuildingBox>(PickedUpBox);
+
+	if (Box)
+	{	
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("drop box!"));
+		
+		//Box->SetActorEnableCollision(true);
+
+		// todo
+		// detach actor from component
+
+		CurrentState = ETeamBuddiesPlayerState::EPlaying;
+		PickedUpBox = NULL;		
+	}
 }
